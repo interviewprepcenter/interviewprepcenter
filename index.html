@@ -188,6 +188,21 @@
 <footer><div class="container footer-grid"><div><a class="logo footer-logo" href="index.html">Interview<span>Prep</span>Center</a><p>Personalized interview preparation built around your resume and target opportunity.</p><p>Email: <a href="mailto:interviewprepcenter@gmail.com">interviewprepcenter@gmail.com</a></p></div><div><strong>Company</strong><a href="contact.html">Contact</a><a href="terms.html">Terms & Conditions</a><a href="privacy.html">Privacy Policy</a></div><div><strong>Service</strong><a href="shipping.html">Shipping & Delivery</a><a href="refund.html">Cancellation & Refunds</a><a href="#pricing">Pricing</a></div></div><div class="container footer-bottom"><span>© InterviewPrepCenter</span><span>Personalized Interview Preparation</span></div></footer>
 
 <script>
+    // Daily unique visitor tracking
+  const VISITOR_TRACKING_URL =
+  'https://script.google.com/macros/s/AKfycbwl5AaIJ7D5LaAOL7eCURE4Ibjckiu-ZtNGqJ6Oj9jigqWYZkFt1drAWZ5v1IgGXRxo/exec?action=trackVisit';
+
+  let visitorId = localStorage.getItem('ipcVisitorId');
+
+  if (!visitorId) {
+    visitorId = crypto.randomUUID();
+    localStorage.setItem('ipcVisitorId', visitorId);
+  }
+
+  const visitPixel = new Image();
+  visitPixel.src =
+    VISITOR_TRACKING_URL +
+    '&visitorId=' + encodeURIComponent(visitorId);
   // Set this to the deployed Apps Script web-app URL that creates a new PIA order
   // and returns/redirects the customer to its Razorpay Payment Link.
   const CHECKOUT_URL =
