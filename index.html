@@ -190,11 +190,36 @@
 <script>
   // Set this to the deployed Apps Script web-app URL that creates a new PIA order
   // and returns/redirects the customer to its Razorpay Payment Link.
-  const CHECKOUT_URL = 'https://script.google.com/macros/s/AKfycbwl5AaIJ7D5LaAOL7eCURE4Ibjckiu-ZtNGqJ6Oj9jigqWYZkFt1drAWZ5v1IgGXRxo/exec?action=createOrder';
+ <script>
+  const CHECKOUT_URL =
+    'https://script.google.com/macros/s/AKfycbwl5AaIJ7D5LaAOL7eCURE4Ibjckiu-ZtNGqJ6Oj9jigqWYZkFt1drAWZ5v1IgGXRxo/exec?action=createOrder';
+
   document.getElementById('purchaseButton').addEventListener('click', function (e) {
     e.preventDefault();
-    window.location.href = CHECKOUT_URL;
+
+    const name =
+      document.getElementById('customerName').value.trim();
+
+    const email =
+      document.getElementById('customerEmail').value.trim();
+
+    const whatsapp =
+      document.getElementById('customerWhatsapp').value.trim();
+
+    if (!name || !email || !whatsapp) {
+      alert('Please enter your name, email address, and WhatsApp number.');
+      return;
+    }
+
+    const checkoutUrl =
+      CHECKOUT_URL +
+      '&name=' + encodeURIComponent(name) +
+      '&email=' + encodeURIComponent(email) +
+      '&whatsapp=' + encodeURIComponent(whatsapp);
+
+    window.location.href = checkoutUrl;
   });
+</script>
 </script>
 </body>
 </html>
